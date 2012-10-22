@@ -33,16 +33,17 @@ void enqueue( node** tail_add_Ptr, tree_node* fruit ) {
 }
 
 /* dequeue the first element in the queue FIFO : first appended remove first */
-void dequeue( node** head_add_Ptr ) {
+tree_node* dequeue( node** head_add_Ptr ) {
 	tree_node* head = (*head_add_Ptr)->fruit ;
 	*head_add_Ptr = (*head_add_Ptr)->next ;
 	return head ;
 }
 
 /* gets the color of  first element in the queue FIFO : first appended remove first */
-void get_next_color( node** head_add_Ptr ) {
+int get_next_color( node** head_add_Ptr ) {
 	if( head_add_Ptr ) {
-		return head_add_Ptr->fruit->color ;
+		tree_node* h_fruit = (*head_add_Ptr)->fruit ;
+		return h_fruit->color ;
 	}
 	else{
 		return NULL ;
@@ -110,8 +111,9 @@ tree_node* initialize_tree( int arr[], int size ) {
 /* prints an element from the linked list and adds children to queue */
 void print_and_add( node** q_head,node* p_head ) {
 	while( p_head ) {
-		printf("%d->",p_head->value ) ;
-		enqueue( 
+		tree_node* p_fruit = p_head->fruit ;
+		printf("%d->",p_fruit->value ) ;
+		//enqueue( 
 
 	}
 	printf("\n") ;
@@ -135,13 +137,13 @@ void print_level_tree( tree_node* root ) {
 		print nodes'
 	*/
 
-	node* q_head = ( node* )malloc( sizeof( node ) );
-	q_tail = q_head ;
+	node* q_head;//  = NULL ;
 	node* q_tail = NULL ;
 
-
 	//enqueue the first element 
-	bfs_recursive( q_head ) ;
+	enqueue( &q_tail,root ) ;
+	q_head = q_tail ;
+	//bfs_recursive( q_head ) ;
 
 }
 
